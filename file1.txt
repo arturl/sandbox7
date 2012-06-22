@@ -1,3 +1,8 @@
 first file
 green
+<<<<<<< HEAD
 bbbbb
+=======
+spain
+aaaaa
+>>>>>>> ed8b8ebafff5beba545ab5560510d3a1c877b0e0
