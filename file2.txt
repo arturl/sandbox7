@@ -3,5 +3,6 @@ blue
 italy
 berlin
 south
+west (added in dirs)
 north
 london
