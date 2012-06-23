@@ -4,9 +4,6 @@ spain
 aaaaa
 added stuff
 rome
-<<<<<<< HEAD
 barcelona
-=======
 marseille
->>>>>>> origin/master
 madrid
