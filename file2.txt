@@ -3,6 +3,7 @@ blue
 italy
 berlin
 south
-east (in main)
+east
+west
 north
 london
