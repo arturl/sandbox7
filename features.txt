@@ -1,2 +1,2 @@
 featureA: cook dinner
-featureB
+featureB: clean room
