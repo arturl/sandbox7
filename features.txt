@@ -1,2 +1,2 @@
 featureA
-featureB
+featureB: clean room
