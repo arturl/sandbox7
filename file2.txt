@@ -4,3 +4,9 @@ italy
 berlin
 opel
 london
+south
+east
+west
+hello
+north
+last line
