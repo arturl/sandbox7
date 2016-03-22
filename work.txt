@@ -3,3 +3,8 @@ ok, here we go
 master 1
 master 2
 master 3
+
+local 1
+local 2
+local 3
+local 4
