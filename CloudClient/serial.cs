@@ -33,19 +33,26 @@ namespace CloudClient
 
             totalBytesReadFromSerial = 0;
 
+            DataReader dataReaderObject = null;
+
             while (true)
             {
                 try
                 {
-                    var result = await device.InputStream.ReadAsync(buffer, bufferSize, Windows.Storage.Streams.InputStreamOptions.None);
-                    if (result.Length > 0)
+                    dataReaderObject = new DataReader(device.InputStream);
+
+                    dataReaderObject.InputStreamOptions = InputStreamOptions.Partial;
+                    var loadAsyncTask = dataReaderObject.LoadAsync(bufferSize).AsTask();
+                    uint bytesRead = await loadAsyncTask;
+
+                    if(bytesRead > 0)
                     {
                         this.state.serialWire.Update(WireState.Solid);
                         this.state.serialWire.Update(DataFlow.Active);
 
-                        totalBytesReadFromSerial += result.Length;
+                        totalBytesReadFromSerial += bytesRead;
 
-                        var str = System.Text.Encoding.ASCII.GetString(result.ToArray());
+                        var str = dataReaderObject.ReadString(bytesRead);
                         Debug.WriteLine(string.Format("[{0}]", str));
                         foreach (var c in str)
                         {
@@ -101,8 +108,12 @@ namespace CloudClient
                 {
                     this.state.serialWire.Update(DataFlow.Stopped);
                     this.state.serialWire.Update(WireState.Cut);
-                    device.Dispose();
+                    totalBytesReadFromSerial = 0;
                     break;
+                }
+                finally
+                {
+                    dataReaderObject.DetachStream();
                 }
             }
         }
